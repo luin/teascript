@@ -1,0 +1,33 @@
+{
+  "name": "tea-script",
+  "version": "1.0.0",
+  "author": "Zihua Li",
+  "license": "MIT",
+  "description": "Synchronous JavaScript",
+  "keywords": [
+    "javascript",
+    "language",
+    "teascript",
+    "async",
+    "compiler"
+  ],
+  "main": "./src/tea-script",
+  "scripts": {
+    "test": "mocha",
+    "compile": "pegjs --cache src/grammar.pegjs src/grammar_parser.js"
+  },
+  "dependencies": {
+    "escodegen": "^1.4.1",
+    "yargs": "^1.3.2"
+  },
+  "engines": {
+    "node": ">=0.11.0"
+  },
+  "preferGlobal": true,
+  "bin": {
+    "tea": "./bin/tea"
+  },
+  "devDependencies": {
+    "pegjs": "^0.8.0"
+  }
+}
