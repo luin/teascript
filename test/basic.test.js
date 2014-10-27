@@ -11,4 +11,12 @@ describe('basic', function() {
     eval(code);
     result.should.eql([true, true]);
   });
+
+  it('should throw error', function() {
+    (function(){
+      var code = read('exception');
+      var result;
+      eval(code);
+    }).should.throw('An error');
+  });
 });

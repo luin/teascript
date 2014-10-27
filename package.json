@@ -1,7 +1,10 @@
 {
   "name": "tea-script",
   "version": "1.0.0",
-  "author": "Zihua Li",
+  "author": {
+    "name": "Zihua Li",
+    "email": "i@zihua.li"
+  },
   "license": "MIT",
   "description": "Synchronous JavaScript",
   "keywords": [
@@ -11,6 +14,13 @@
     "async",
     "compiler"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/luin/teascript.git"
+  },
+  "bugs": {
+    "url": "https://github.com/luin/teascript/issues"
+  },
   "main": "./src/tea-script",
   "scripts": {
     "test": "mocha --harmony",

@@ -51,6 +51,8 @@ for (var i = 0; i < 10; ++i) {
     // 查阅帮助与更多参数
     $ tea --help
 
+TeaScript 和 JavaScript(ES 5) 语法一致，唯一不同是添加了 `~` 操作符。将 Node-style 的异步函数的回调函数参数位置替换为 `~` 即可完成同步化，如果有 `err` 参数则相应抛出异常。
+
 ## Node 版本
 
 TeaScript 编译后的代码需要 Node 0.11.x 及以上版本并开启 `--harmony` 参数方能运行。
