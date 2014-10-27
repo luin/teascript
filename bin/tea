@@ -1,55 +1,7 @@
-#!/usr/bin/env node --harmony
+#!/usr/bin/env node
 
+var spawn = require('child_process').spawn;
 var path = require('path');
-var fs   = require('fs');
-var TeaScript = require('../src/tea-script');
+var args = [path.join(__dirname, '_tea')].concat(process.argv.slice(2));
 
-var yargs = require('yargs')
-    .usage(['Usage: tea [options] path/to/script.tea -- [args]',
-            '',
-            'If called without options, `tea` will run your script.'].join("\r\n"))
-    .options('c', {
-      alias: 'compile',
-      boolean: true,
-      describe: 'Compile a .tea script into a .js JavaScript file of the same name.'
-    })
-    .options('p', {
-      alias: 'print',
-      boolean: true,
-      describe: 'Instead of writing out the JavaScript as a file, print it directly to stdout.'
-    })
-    .options('o', {
-      alias: 'output',
-      describe: 'Write out all compiled JavaScript files into the specified directory.'
-    })
-    .help('help')
-    .version(require('../package.json').version, 'version');
-
-var argv = yargs.argv;
-
-var filename = argv._[0];
-if (!filename) {
-  console.log(yargs.help());
-  process.exit(1);
-}
-
-var filecontent = fs.readFileSync(filename, 'utf-8');
-var targetPath = path.dirname(filename);
-
-if (argv.output) {
-  targetPath = argv.output;
-}
-
-if (argv.compile) {
-  var code = TeaScript.compile(filecontent);
-  fs.writeFileSync(path.join(targetPath, path.basename(filename, '.tea') + '.js'), code, 'utf-8');
-}
-
-if (argv.print) {
-  var code = TeaScript.compile(filecontent);
-  console.log(code);
-}
-
-if (!argv.compile && !argv.print) {
-  TeaScript.run(filecontent);
-}
+spawn(process.argv[0], ['--harmony'].concat(args), { stdio: [0, 1, 2] });
