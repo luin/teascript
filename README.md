@@ -1,6 +1,8 @@
 # TeaScript
 TeaScript 是一个兼容 JavaScript(ES 5) 语法且可以编译为 JavaScript 的语言。旨在优雅简易地解决 JavaScript 的异步流程控制问题。
 
+[![Build Status](https://travis-ci.org/luin/teascript.png?branch=master)](https://travis-ci.org/luin/teascript)
+
 ## 代码样例
 
 ```javascript
