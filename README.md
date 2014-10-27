@@ -46,6 +46,8 @@ for (var i = 0; i < 10; ++i) {
 
     // 安装 tea-script 模块，将在系统中加入 tea 命令
     $ npm install -g tea-script
+    // 运行 tea 脚本
+    $ tea script.tea
     // --compile 参数将编译 tea 脚本并生成同名 js 脚本
     $ tea --compile script.tea
     // 查阅帮助与更多参数
