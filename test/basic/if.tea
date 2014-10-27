@@ -1,0 +1,13 @@
+var asyncFunc = function(name, callback) {
+  callback(null, name === 'Bob');
+};
+
+result = [];
+if (asyncFunc('Bob', ~)) {
+  result.push(true);
+}
+if (!asyncFunc('Jeff', ~)) {
+  result.push(true);
+}
+
+result
