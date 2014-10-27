@@ -1,3 +1,7 @@
+if ('function' !== typeof Map) {
+  throw new Error('ES6 is required; Require Node 0.11.x and add --harmony');
+}
+
 var parse     = require('./grammar_parser').parse;
 var fs        = require('fs');
 var path      = require('path');
