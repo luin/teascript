@@ -126,3 +126,9 @@ if (user) {
   res.json({ error: 'No user' });
 }
 ```
+
+
+## Roadmap
+
+1. Plugins for Grunt, Gulp, Vim...
+2. More tests
