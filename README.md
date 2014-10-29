@@ -59,11 +59,70 @@ Write TeaScript is as easy as replacing callback functions the operator `~`, and
 
 TeaScript requires node 0.11.x for the --harmony flag which exposes generators to your script. If you're running an earlier version of node you may install [n](https://github.com/visionmedia/n), a node version manager to quickly install 0.11.x:
 
-	$ npm install -g n
-	$ n 0.11.12
+    $ npm install -g n
+    $ n 0.11.12
 
-	$ tea script.tea
+    $ tea script.tea
 
-  // or
-  $ tea --compile script.tea
-  $ node --harmony script.js
+    // or
+    $ tea --compile script.tea
+    $ node --harmony script.js
+
+## More examples
+
+### Before:
+
+```javascript
+var async = require('async');
+var userIds = [672, 282, 33, 4];
+async.map(userIds, function(userId, callback) {
+  User.findById(userId, function(err, user) {
+    callback(err, user);
+  });
+}, function(err, users) {
+  res.json(users);
+});
+```
+
+### Now:
+
+```javascript
+var userIds = [672, 282, 33, 4];
+res.json(userIds.map(function(userId) {
+  return User.findById(userId, ~);
+}));
+```
+
+### Before:
+
+```javascript
+User.findById(req.query.userId, function(err, user) {
+    if (user) {
+      user.getTasks(function(err, tasks) {
+        if (tasks) {
+          res.json(tasks);
+        } else {
+          res.json({ error: 'No tasks' });
+        }
+      });
+    } else {
+      res.json({ error: 'No user' });
+    }
+});
+```
+
+### Now(with TeaScript):
+
+```javascript
+var user = User.findById(req.query.userId);
+if (user) {
+  var tasks = user.getTasks(~);
+  if (tasks) {
+    res.json(tasks);
+  } else {
+    res.json({ error: 'No tasks' });
+  }
+} else {
+  res.json({ error: 'No user' });
+}
+```
