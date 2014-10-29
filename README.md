@@ -1,9 +1,9 @@
 # TeaScript
-TeaScript 是一个兼容 JavaScript(ES 5) 语法且可以编译为 JavaScript 的语言。旨在优雅简易地解决 JavaScript 的异步流程控制问题。
+TeaScript is a superset of JavaScript(ES 5) and it can be compiled into JavaScript. TeaScript adds a new operator `~` to simply and powerfully streamline asynchronous control flow. Say goodbye to callback pyramids finally.
 
 [![Build Status](https://travis-ci.org/luin/teascript.png?branch=master)](https://travis-ci.org/luin/teascript)
 
-## 代码样例
+## Sample
 
 ```javascript
 var count = 0;
@@ -19,7 +19,7 @@ for (var i = 0; i < 10; ++i) {
 }
 ```
 
-输出结果：
+Output:
 
     Mon Oct 27 2014 20:58:26 GMT+0800 (CST) 0
     step0
@@ -42,26 +42,28 @@ for (var i = 0; i < 10; ++i) {
     Mon Oct 27 2014 20:58:35 GMT+0800 (CST) 9
     step9
 
-## 使用方法
+## Usage
 
-    // 安装 tea-script 模块，将在系统中加入 tea 命令
+    // Install tea-script module globally
     $ npm install -g tea-script
-    // 运行 tea 脚本
+    // Run a TeaScript file
     $ tea script.tea
-    // --compile 参数将编译 tea 脚本并生成同名 js 脚本
+    // Compile the tea script and save `.js` file to the same dir
     $ tea --compile script.tea
-    // 查阅帮助与更多参数
+    // Learn more
     $ tea --help
 
-TeaScript 和 JavaScript(ES 5) 语法一致，唯一不同是添加了 `~` 操作符。将 Node-style 的异步函数的回调函数参数位置替换为 `~` 即可完成同步化，如果有 `err` 参数则相应抛出异常。
+Write TeaScript is as easy as replacing callback functions the operator `~`, and the result will be returned synchronously. Any error will be throwed.
 
-## Node 版本
+## Node Version
 
-TeaScript 编译后的代码需要 Node 0.11.x 及以上版本并开启 `--harmony` 参数方能运行。
-
-如果安装的版本较旧，可以使用 [n](https://github.com/visionmedia/n) 来快速安装 0.11.x：
+TeaScript requires node 0.11.x for the --harmony flag which exposes generators to your script. If you're running an earlier version of node you may install [n](https://github.com/visionmedia/n), a node version manager to quickly install 0.11.x:
 
 	$ npm install -g n
 	$ n 0.11.12
+
 	$ tea script.tea
 
+  // or
+  $ tea --compile script.tea
+  $ node --harmony script.js
