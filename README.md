@@ -114,7 +114,7 @@ User.findById(req.query.userId, function(err, user) {
 ### Now(with TeaScript):
 
 ```javascript
-var user = User.findById(req.query.userId);
+var user = User.findById(req.query.userId, ~);
 if (user) {
   var tasks = user.getTasks(~);
   if (tasks) {
