@@ -411,7 +411,7 @@ module.exports = (function() {
                         type: "CallExpression",
                         callee: {
                             type: "Identifier",
-                            name: "thunkify"
+                            name: "$teascript1Thunkify"
                         },
                         "arguments": [{ type: 'Literal', value: args.asyncIndex }, callee]
                       },
@@ -433,7 +433,7 @@ module.exports = (function() {
                         type: "CallExpression",
                         callee: {
                             type: "Identifier",
-                            name: "thunkify"
+                            name: "$teascript1Thunkify"
                         },
                         "arguments": [{ type: 'Literal', value: element.arguments.asyncIndex }, result]
                       },

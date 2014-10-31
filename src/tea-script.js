@@ -9,9 +9,9 @@ var escodegen = require('escodegen');
 
 var compile = exports.compile = function(code) {
   code = parse(code);
-  code = ';run(function* () {' + escodegen.generate(code) + '});';
-  code += thunkify.toString();
-  code += run.toString();
+  code = ';$teascript1Run(function* () {' + escodegen.generate(code) + '});';
+  code += $teascript1Thunkify.toString();
+  code += $teascript1Run.toString();
   return code;
 };
 
@@ -50,7 +50,7 @@ exports.run = function(code, options) {
   mainModule._compile(code, mainModule.filename);
 };
 
-function thunkify (asyncIndex, nodefn) {
+function $teascript1Thunkify (asyncIndex, nodefn) {
   return function () {
     var args = Array.prototype.slice.call(arguments);
     return function (cb) {
@@ -60,7 +60,7 @@ function thunkify (asyncIndex, nodefn) {
   };
 }
 
-function run(genFn) {
+function $teascript1Run(genFn) {
   var gen = genFn();
   next();
 
