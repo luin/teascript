@@ -656,38 +656,7 @@ NewExpression
 
 CallExpression
   = first:(
-      callee:MemberExpression __ args:Arguments {
-        return { type: "CallExpression", callee: callee, arguments: args };
-      }
-    )
-    rest:(
-        __ args:Arguments {
-          return { type: "CallExpression", arguments: args };
-        }
-      / __ "[" __ property:Expression __ "]" {
-          return {
-            type:     "MemberExpression",
-            property: property,
-            computed: true
-          };
-        }
-      / __ "." __ property:IdentifierName {
-          return {
-            type:     "MemberExpression",
-            property: property,
-            computed: false
-          };
-        }
-    )*
-    {
-      return buildTree(first, rest, function(result, element) {
-        element[TYPES_TO_PROPERTY_NAMES[element.type]] = result;
-
-        return element;
-      });
-    }
-  / first:(
-      callee:MemberExpression __ args:AsyncArguments {
+      callee:MemberExpression __ args:(Arguments / AsyncArguments) {
         if (args.async) {
           return {
             type: "YieldExpression",
@@ -710,7 +679,7 @@ CallExpression
       }
     )
     rest:(
-        __ args:AsyncArguments {
+        __ args: (Arguments / AsyncArguments) {
           return { type: "CallExpression", arguments: args };
         }
       / __ "[" __ property:Expression __ "]" {
