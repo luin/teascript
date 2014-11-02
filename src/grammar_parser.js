@@ -8172,6 +8172,9 @@ module.exports = (function() {
             peg$currPos = s3;
             s3 = peg$c0;
           }
+          if (s3 === peg$FAILED) {
+            s3 = peg$c59;
+          }
           if (s3 !== peg$FAILED) {
             if (input.charCodeAt(peg$currPos) === 41) {
               s4 = peg$c228;

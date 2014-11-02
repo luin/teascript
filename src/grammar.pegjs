@@ -769,7 +769,7 @@ AsyncToken
   }
 
 AsyncArguments
-  = "(" __ args:(AsyncArgumentList __) ")" {
+  = "(" __ args:(AsyncArgumentList __)? ")" {
     var result = optionalList(extractOptional(args, 0));
     var asyncIndex = result.indexOf('~');
     if (asyncIndex !== -1) {
